@@ -1,0 +1,40 @@
+.image {
+  width: 200px;
+  height: 200px;
+}
+.listaMasini {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-decoration: none;
+}
+.link {
+  text-decoration: none;
+}
+.name {
+  color: #2568b4;
+}
+
+.masina:hover {
+  text-decoration: underline;
+  text-decoration-color: #2568b4;
+}
+
+@media (max-width: 950px) {
+  .listaMasini {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem 5.35rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .listaMasini {
+    display: flex;
+    flex-direction: column;
+  }
+}

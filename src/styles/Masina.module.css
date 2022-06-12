@@ -1,0 +1,89 @@
+.image {
+  height: 300px;
+  width: 300px;
+}
+.hero {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6rem;
+}
+.details {
+  text-align: left;
+}
+.wrapperTable {
+  font-size: 1.1rem;
+  display: inline-block;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+.table {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  text-align: start;
+  width: 100%;
+}
+
+.table td,
+th {
+  background-color: #e1e1e1;
+  padding: 0.5rem;
+  border: 1px solid #d1d1d1;
+}
+
+@media (max-width: 780px) {
+  .wrapperTable {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .btn.estimare {
+    border-radius: 10px 10px 0 0;
+  }
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .table tr {
+    margin-bottom: 1rem;
+  }
+  .table tr,
+  .table td,
+  .table tbody {
+    text-align: right;
+    position: relative;
+  }
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    font-weight: 700;
+    left: 0;
+    width: 50%;
+    text-align: left;
+    padding-left: 0.8rem;
+  }
+}
+
+@media (max-width: 965px) {
+  .hero {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .hero {
+    flex-direction: column;
+  }
+}

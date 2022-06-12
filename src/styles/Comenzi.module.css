@@ -1,0 +1,206 @@
+.wrapperTable {
+  font-size: 1.1rem;
+  display: inline-block;
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.table {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  text-align: start;
+  width: 100%;
+}
+.wide {
+  width: 200px;
+}
+.table td,
+th {
+  background-color: #e1e1e1;
+  padding: 0.5rem;
+  border: 1px solid #d1d1d1;
+}
+
+td.orange {
+  background-color: #dcc966;
+}
+td.gray {
+  background-color: #a7a7a7;
+}
+td.blue {
+  background-color: #669ddc;
+}
+td.green {
+  background-color: #6aa51d;
+}
+td.tableButtons {
+  text-align: center;
+}
+.modalTitle {
+  font-size: 1.1rem;
+  text-align: center;
+  align-items: center;
+  background-color: #e1e1e1;
+  border-bottom: solid 1px #d1d1d1;
+  line-height: 2.5rem;
+  margin: 0;
+  height: 2.5rem;
+}
+.modalText {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+.buttons {
+  height: 43px;
+  border-bottom: solid 3px #2568b4;
+}
+.modalButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.btn {
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+}
+.btn.delete {
+  color: #d3453c;
+}
+.btn.accept {
+  color: #6aa51d;
+}
+.btn.confirm {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: #6aa51d;
+  color: #fff;
+}
+.btn.decline {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: #d3453c;
+  color: #fff;
+}
+.btn.estimare {
+  font-size: 1.1rem;
+  float: right;
+  background-color: #2568b4;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 0.5rem;
+}
+.btn.actuale {
+  font-size: 1.1rem;
+  float: left;
+  background-color: #e1e1e1;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 0.5rem;
+}
+.btn.completate {
+  font-size: 1.1rem;
+  float: left;
+  background-color: #e1e1e1;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 0.5rem;
+}
+.btn.act {
+  background-color: #2568b4;
+}
+
+@media (max-width: 1300px) {
+  .wide {
+    width: 120px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .wrapperTable {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .buttons {
+    margin: 0 auto;
+    width: 75%;
+  }
+  .btn.estimare {
+    border-radius: 10px 10px 0 0;
+  }
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .table tr {
+    margin-bottom: 1rem;
+  }
+  .table tr,
+  .table td,
+  .table tbody {
+    text-align: right;
+    position: relative;
+  }
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    text-align: left;
+    padding-left: 0.8rem;
+  }
+}
+@media (max-width: 700px) {
+  .wrapperTable {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .buttons {
+    width: 100%;
+  }
+  .modalButtons {
+    gap: 1rem;
+  }
+  .btn.confirm {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 1rem;
+    background-color: #6aa51d;
+    color: #fff;
+  }
+  .btn.decline {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 1rem;
+    background-color: #d3453c;
+    color: #fff;
+  }
+}
+@media (max-width: 400px) {
+  .btn.completate {
+    float: right;
+  }
+
+  .estimare {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

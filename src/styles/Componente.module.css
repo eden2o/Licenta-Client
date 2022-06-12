@@ -1,0 +1,69 @@
+.componente {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.componenta {
+  background-color: #e1e1e1;
+  border: 2px solid #d1d1d1;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+.procedee {
+  margin-top: 0.5rem;
+  list-style: decimal;
+  padding: 0;
+}
+.procedeu {
+  list-style: decimal;
+  display: flex;
+  justify-content: space-between;
+
+  height: 2rem;
+}
+.timp {
+  font-weight: 600;
+}
+.numeComponenta {
+  margin-bottom: 0.3rem;
+}
+.pagination {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+@media (max-width: 1000px) {
+}
+
+@media (max-width: 800px) {
+  .componente {
+    margin: 0 auto;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+  .componenta {
+    padding-bottom: 1rem;
+  }
+  .pagination {
+    width: 60%;
+  }
+}
+
+@media (max-width: 650px) {
+  .componente {
+    margin: 0 auto;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+  .componenta {
+    padding-bottom: 1rem;
+  }
+  .pagination {
+    width: 80%;
+  }
+}
