@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { GiFactory } from 'react-icons/gi';
 import { FaSitemap, FaClipboardList } from 'react-icons/fa';
 import { BsGearFill } from 'react-icons/bs';
-
+import { AiFillHome } from 'react-icons/ai';
 import styles from '../styles/Navigation.module.css';
 
 export default function NavLinks(props) {
@@ -11,7 +11,10 @@ export default function NavLinks(props) {
     <ul>
       <li onClick={() => props.isMobile && props.closeMenu()}>
         <NavLink to='/'>
-          <div className={`${styles.navItem} ${styles.hidden}`}>Acasa</div>
+          <div className={styles.navItem}>
+            <AiFillHome className={styles.navLogo} />
+            Acasa
+          </div>
         </NavLink>
       </li>
       <li onClick={() => props.isMobile && props.closeMenu()}>

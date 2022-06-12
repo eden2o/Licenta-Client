@@ -78,6 +78,9 @@ button {
 .act {
   background-color: #2568b4;
 }
+.active {
+  background-color: #555;
+}
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
