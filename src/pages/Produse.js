@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Modal from '../components/Modal';
 import Loading from '../components/Loading';
 import axios from 'axios';
 import styles from '../styles/Produse.module.css';
@@ -30,7 +29,7 @@ export default function Produse() {
   useEffect(() => {
     const controller = new AbortController();
     axios
-      .get('http://localhost:3001/produse', { signal: controller.signal })
+      .get('https://licenta-tudor-alin-api.herokuapp.com/produse', { signal: controller.signal })
       .then((response) => {
         setListaProduse(response.data);
         setIsLoading(false);
@@ -63,7 +62,7 @@ export default function Produse() {
 
   const insertDurata = (id, durata) => {
     axios
-      .put('http://localhost:3001/produse', {
+      .put('https://licenta-tudor-alin-api.herokuapp.com/produse', {
         id: id,
         durata_fabricatie: durata,
       })
@@ -78,17 +77,6 @@ export default function Produse() {
   return (
     <>
       <h1>Produse</h1>
-
-      {/* <button onClick={() => setOpen(true)}>Open</button>
-      <Modal
-        open={open}
-        close={() => {
-          setOpen(false);
-        }}
-      >
-        <h1>Test</h1>
-      </Modal> */}
-
       <div className={'lista-produse'}>
         {isLoading && <Loading />}
         {listaProduse &&
