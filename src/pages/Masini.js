@@ -12,7 +12,7 @@ export default function Masini() {
   useEffect(() => {
     const controller = new AbortController();
     axios
-      .get('http://localhost:3001/masini')
+      .get('https://licenta-tudor-alin-api.herokuapp.com/masini')
       .then((response) => {
         setListaMasini(response.data);
         setIsLoading(false);

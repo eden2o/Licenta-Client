@@ -29,7 +29,7 @@ export default function Comenzi() {
 
   const getUltimaData = () => {
     axios
-      .get('http://localhost:3001/masini/data')
+      .get('https://licenta-tudor-alin-api.herokuapp.com/masini/data')
       .then((response) => {
         setUltimaData(response.data);
       })
@@ -40,7 +40,7 @@ export default function Comenzi() {
 
   const getDates = () => {
     axios
-      .get('http://localhost:3001/comenzi/firstdates')
+      .get('https://licenta-tudor-alin-api.herokuapp.com/comenzi/firstdates')
       .then((response) => {
         setFirstDates(response.data);
         setIsLoading(false);
@@ -51,7 +51,7 @@ export default function Comenzi() {
       });
 
     axios
-      .get('http://localhost:3001/comenzi/lastdates')
+      .get('https://licenta-tudor-alin-api.herokuapp.com/comenzi/lastdates')
       .then((response) => {
         setLastDates(response.data);
         setIsLoading(false);
@@ -65,7 +65,7 @@ export default function Comenzi() {
   const loadComenzi = () => {
     const controller = new AbortController();
     axios
-      .get('http://localhost:3001/comenzi', { signal: controller.signal })
+      .get('https://licenta-tudor-alin-api.herokuapp.com/comenzi', { signal: controller.signal })
       .then((response) => {
         setListaComenzi(response.data);
         setIsLoading(false);
@@ -83,7 +83,7 @@ export default function Comenzi() {
 
   const loadLista = () => {
     axios
-      .get('http://localhost:3001/comenzi/all')
+      .get('https://licenta-tudor-alin-api.herokuapp.com/comenzi/all')
       .then((response) => {
         setDateComanda(response.data);
         setIsLoading(false);
@@ -95,14 +95,14 @@ export default function Comenzi() {
   };
 
   const deleteComanda = (id) => {
-    axios.delete(`http://localhost:3001/comenzi/delete/${id}`).then(() => {
+    axios.delete(`https://licenta-tudor-alin-api.herokuapp.com/comenzi/delete/${id}`).then(() => {
       console.log('Deleted');
       setUpdated(!updated);
     });
   };
 
   const deleteProgram = (id) => {
-    axios.delete(`http://localhost:3001/comenzi/delete-program/${id}`).then(() => {
+    axios.delete(`https://licenta-tudor-alin-api.herokuapp.com/comenzi/delete-program/${id}`).then(() => {
       console.log('Deleted');
     });
   };
@@ -129,7 +129,7 @@ export default function Comenzi() {
     let id = id_comanda;
     let newStatus = status;
     axios
-      .put('http://localhost:3001/comenzi/update', {
+      .put('https://licenta-tudor-alin-api.herokuapp.com/comenzi/update', {
         id: id,
         status: newStatus,
       })
@@ -143,7 +143,7 @@ export default function Comenzi() {
 
   const sendPostRequest = (rand_tabel) => {
     axios
-      .post('http://localhost:3001/comenzi', rand_tabel)
+      .post('https://licenta-tudor-alin-api.herokuapp.com/comenzi', rand_tabel)
       .then((response) => {
         loadLista();
       })
@@ -154,7 +154,7 @@ export default function Comenzi() {
 
   const updateDataEstimata = (id, data) => {
     axios
-      .put('http://localhost:3001/comenzi/data', {
+      .put('https://licenta-tudor-alin-api.herokuapp.com/comenzi/data', {
         id: id,
         data_estimata: data,
       })

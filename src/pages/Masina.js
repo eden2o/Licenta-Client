@@ -31,7 +31,7 @@ export default function Masina() {
   useEffect(() => {
     const controller = new AbortController();
     axios
-      .get(`http://localhost:3001/masini/${id}`, { signal: controller.signal })
+      .get(`https://licenta-tudor-alin-api.herokuapp.com/masini/${id}`, { signal: controller.signal })
       .then((response) => {
         setMasini(response.data);
         setIsLoading(false);

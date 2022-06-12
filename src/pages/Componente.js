@@ -31,7 +31,7 @@ export default function Componente() {
   useEffect(() => {
     const controller = new AbortController();
     axios
-      .get('http://localhost:3001/componente', { signal: controller.signal })
+      .get('https://licenta-tudor-alin-api.herokuapp.com/componente', { signal: controller.signal })
       .then((response) => {
         setListaComponente(response.data);
         setIsLoading(false);
