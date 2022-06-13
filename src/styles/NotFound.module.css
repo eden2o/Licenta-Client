@@ -1,0 +1,22 @@
+.notFound {
+  margin-top: 4rem;
+}
+.error {
+  font-size: 3rem;
+  color: #d3453c;
+}
+.notFound p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.notFound a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+}
+.notFound a:hover {
+  color: #2568b4;
+  font-weight: 700;
+}

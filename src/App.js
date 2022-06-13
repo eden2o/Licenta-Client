@@ -6,8 +6,9 @@ import Masini from './pages/Masini';
 import Produse from './pages/Produse';
 import Masina from './pages/Masina';
 import Acasa from './pages/Acasa';
-import './styles.css';
 import Footer from './components/Footer';
+import NotFound from './pages/NotFound';
+import './styles.css';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/componente' element={<Componente />} />
           <Route path='/produse' element={<Produse />} />
           <Route path='/masini/:id' element={<Masina />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
