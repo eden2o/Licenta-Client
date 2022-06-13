@@ -15,13 +15,12 @@
 }
 .name {
   color: #2568b4;
+  font-size: 1.3rem;
 }
-
 .masina:hover {
   text-decoration: underline;
   text-decoration-color: #2568b4;
 }
-
 @media (max-width: 950px) {
   .listaMasini {
     display: grid;
