@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import Loading from '../components/Loading';
 import Pagination from '../components/Pagination';
 import styles from '../styles/Masina.module.css';
+var utc = require('dayjs/plugin/utc');
+dayjs.extend(utc);
 
 export default function Masina() {
   const { id } = useParams();
@@ -100,9 +102,14 @@ export default function Masina() {
                             Comanda {program.id_comanda}
                           </td>
                           <td data-label='Componenta'>{program.componentum.denumire} </td>
-                          <td data-label='Porcedeu'>{program.procedeu_prelucrare.denumire}</td>
-                          <td data-label='Data Inceput'>{dayjs(program.inceput_operatie).format('YYYY-MM-DD, HH:mm:ss')} </td>
-                          <td data-label='Data Incheiere'>{dayjs(program.incheiere_operatie).format('YYYY-MM-DD, HH:mm:ss')}</td>
+                          <td data-label='Procedeu'>{program.procedeu_prelucrare.denumire}</td>
+                          <td data-label='Data Inceput'>
+                            {console.log(dayjs(program.inceput_operatie))}
+                            {dayjs.utc(program.inceput_operatie).format('YYYY-MM-DD, HH:mm:ss')}
+                          </td>
+                          <td data-label='Data Incheiere'>
+                            {dayjs.utc(program.incheiere_operatie).format('YYYY-MM-DD, HH:mm:ss')}
+                          </td>
                         </tr>
                       );
                     else return null;

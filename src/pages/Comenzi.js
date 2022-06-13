@@ -26,7 +26,7 @@ export default function Comenzi() {
     loadLista();
     getDates();
     getUltimaData();
-  }, [updated]);
+  }, [updated, listaComenzi]);
 
   const getUltimaData = () => {
     axios
@@ -97,19 +97,15 @@ export default function Comenzi() {
 
   const deleteComanda = (id) => {
     axios.delete(`https://licenta-tudor-alin-api.herokuapp.com/comenzi/delete/${id}`).then(() => {
-      console.log('Deleted');
-      setUpdated(!updated);
+      console.log('deleted');
     });
   };
 
   const deleteProgram = (id) => {
-    axios.delete(`https://licenta-tudor-alin-api.herokuapp.com/comenzi/delete-program/${id}`).then(() => {
-      console.log('Deleted');
-    });
+    axios.delete(`https://licenta-tudor-alin-api.herokuapp.com/comenzi/delete-program/${id}`).then(() => {});
   };
 
   const checkStatus = () => {
-    console.log('ran');
     var today = dayjs();
     for (let i = 0; i < firstDates.length; i++) {
       var first_date = dayjs(firstDates[i].program_masinas[0].inceput_operatie);
@@ -433,41 +429,6 @@ export default function Comenzi() {
                       }
                     >
                       {comanda.status}
-                    </td>
-                    <td className={styles.tableButtons}>
-                      {comanda.status === 'In asteptare' && comanda.data_estimata ? (
-                        <>
-                          <button className={`${styles.btn} ${styles.accept}`} onClick={() => calculProgram(comanda.id)}>
-                            <AiFillCheckCircle />
-                          </button>
-                          <button
-                            className={`${styles.btn} ${styles.delete}`}
-                            onClick={() => {
-                              setOpen(!open);
-                              setUpdated(!updated);
-                            }}
-                          >
-                            <RiDeleteBin2Fill />
-                          </button>
-                          <Modal
-                            open={open}
-                            close={() => {
-                              setOpen(false);
-                            }}
-                          >
-                            <h4>Stergere Comanda?</h4>
-                            <button
-                              onClick={() => {
-                                deleteComanda(comanda.id);
-                                setOpen(!open);
-                              }}
-                            >
-                              Da
-                            </button>
-                            <button onClick={() => setOpen(!open)}>Nu</button>
-                          </Modal>
-                        </>
-                      ) : null}
                     </td>
                   </tr>
                 );
