@@ -53,6 +53,7 @@ footer {
 }
 
 .copyright {
+  font-size: 0.8rem;
   text-align: center;
 }
 @media (max-width: 1200px) {
@@ -72,7 +73,7 @@ footer {
 }
 @media (max-width: 950px) {
   footer {
-    height: 34rem;
+    height: 36rem;
     padding: 0;
   }
   .content {
@@ -83,9 +84,9 @@ footer {
   }
   .detalii,
   .navigare,
-  .contact {
-    width: 20rem;
-    margin: 0 auto;
+  .contact,
+  .copyright {
+    width: 90%;
   }
 }
 @media (max-width: 400px) {
