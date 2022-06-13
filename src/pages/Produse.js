@@ -27,6 +27,7 @@ export default function Produse() {
   };
 
   useEffect(() => {
+    document.title = 'Proiect de Diploma | Produse';
     const controller = new AbortController();
     axios
       .get('https://licenta-tudor-alin-api.herokuapp.com/produse', { signal: controller.signal })

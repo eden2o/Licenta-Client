@@ -1,6 +1,11 @@
 import React from 'react';
+import { useEffect } from 'react';
 
 export default function Acasa() {
+  useEffect(() => {
+    document.title = 'Proiect de Diploma';
+  }, []);
+
   return (
     <article>
       <h1>Proiect de Diploma - Tudor Alin-Alexandru</h1>

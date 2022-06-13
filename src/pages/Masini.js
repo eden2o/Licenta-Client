@@ -10,6 +10,7 @@ export default function Masini() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'Proiect de Diploma | Masini';
     const controller = new AbortController();
     axios
       .get('https://licenta-tudor-alin-api.herokuapp.com/masini')

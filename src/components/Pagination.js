@@ -10,7 +10,7 @@ export default function Pagination({ itemsPage, totalItems, paginate, increment,
     pageNumbers.push(i);
   }
   return (
-    <nav>
+    <nav className={styles.pagination}>
       <ul>
         <li>
           <BiChevronsLeft onClick={() => decrement()} className={styles.chevron} />
@@ -20,7 +20,7 @@ export default function Pagination({ itemsPage, totalItems, paginate, increment,
             return (
               <li key={number}>
                 <a
-                  className={currentPage === number ? styles.active : null}
+                  className={currentPage === number ? styles.activeLink : null}
                   href='#!'
                   onClick={() => {
                     paginate(number);
@@ -34,7 +34,7 @@ export default function Pagination({ itemsPage, totalItems, paginate, increment,
             return (
               <li key={number}>
                 <a
-                  className={currentPage === number ? styles.active : null}
+                  className={currentPage === number ? styles.activeLink : null}
                   href='#!'
                   onClick={() => {
                     paginate(number);

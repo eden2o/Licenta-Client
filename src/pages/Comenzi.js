@@ -21,6 +21,7 @@ export default function Comenzi() {
 
   useEffect(() => {
     //initial get request for all data
+    document.title = 'Proiect de Diploma | Comenzi';
     loadComenzi();
     loadLista();
     getDates();

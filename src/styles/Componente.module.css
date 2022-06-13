@@ -33,7 +33,9 @@
   margin: 0 auto;
   margin-bottom: 1rem;
 }
-@media (max-width: 1000px) {
+.procedee li {
+  border-bottom: 1px solid #d1d1d1;
+  line-height: 2rem;
 }
 
 @media (max-width: 800px) {
@@ -65,5 +67,10 @@
   }
   .pagination {
     width: 80%;
+  }
+}
+@media (max-width: 500px) {
+  .procedee li {
+    font-size: 0.8rem;
   }
 }

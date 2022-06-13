@@ -13,6 +13,7 @@ export default function Masina() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage] = useState(10);
+  const today = dayjs();
 
   const indexLast = currentPage * itemsPage;
   const indexFirst = indexLast - itemsPage;
@@ -27,7 +28,7 @@ export default function Masina() {
   const decrement = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
-  const today = dayjs();
+
   useEffect(() => {
     const controller = new AbortController();
     axios
