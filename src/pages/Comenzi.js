@@ -376,13 +376,7 @@ export default function Comenzi() {
                           <button className={`${styles.btn} ${styles.accept}`} onClick={() => calculProgram(comanda.id)}>
                             <AiFillCheckCircle />
                           </button>
-                          <button
-                            className={`${styles.btn} ${styles.delete}`}
-                            onClick={() => {
-                              setOpen(!open);
-                              setUpdated(!updated);
-                            }}
-                          >
+                          <button className={`${styles.btn} ${styles.delete}`} onClick={() => setOpen(!open)}>
                             <RiDeleteBin2Fill />
                           </button>
                           <Modal
@@ -397,9 +391,8 @@ export default function Comenzi() {
                               <button
                                 className={`${styles.btn} ${styles.confirm}`}
                                 onClick={() => {
-                                  setOpen(!open);
-                                  setUpdated(!updated);
                                   deleteComanda(comanda.id);
+                                  setOpen(!open);
                                 }}
                               >
                                 Da
@@ -465,9 +458,8 @@ export default function Comenzi() {
                             <h4>Stergere Comanda?</h4>
                             <button
                               onClick={() => {
-                                setOpen(!open);
-                                setUpdated(!updated);
                                 deleteComanda(comanda.id);
+                                setOpen(!open);
                               }}
                             >
                               Da
