@@ -24,7 +24,7 @@ footer {
 }
 .detalii {
   height: 100%;
-  width: 35%;
+  width: 33%;
   max-width: 350px;
 }
 .navigare {
@@ -33,6 +33,10 @@ footer {
 .contact {
   height: 100%;
   margin-top: 0;
+}
+.copyright {
+  font-size: 0.8rem;
+  text-align: center;
 }
 .navigare li a {
   color: #fff;
@@ -52,10 +56,6 @@ footer {
   display: none;
 }
 
-.copyright {
-  font-size: 0.8rem;
-  text-align: center;
-}
 @media (max-width: 1200px) {
   .content {
     gap: 3rem;
@@ -86,6 +86,7 @@ footer {
   .navigare,
   .contact,
   .copyright {
+    max-width: 350px;
     width: 90%;
   }
 }

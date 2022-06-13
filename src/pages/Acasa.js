@@ -10,18 +10,16 @@ export default function Acasa() {
     <article>
       <h1>Proiect de Diploma - Tudor Alin-Alexandru</h1>
       <p>
-        PROIECTAREA UNUI ALGORITM ȘI REALIZAREA UNEI APLICAȚII INFORMATICE PENTRU ASISTAREA PLANIFICĂRII ACTIVITĂȚILOR DINTR-UN
-        SISTEM DE FABRICAȚIE
+        In cadrul acestui site este prezentata solutia proprie pentru tema "Proiectarea unui algoritm șI realizarea unei aplicații
+        informatice pentru asistarea planificării activităților dintr-un sistem de fabricație".
       </p>
+      <br />
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro neque, eveniet praesentium quibusdam velit fugit, commodi
-        doloribus maiores quia dignissimos deserunt atque nesciunt nulla harum ad! Assumenda beatae vel cum dolorum quibusdam quas
-        pariatur cumque commodi ratione eligendi rerum odit aspernatur adipisci similique quidem at ad, itaque obcaecati mollitia
-        ex sed soluta aliquam rem facere! Molestiae, quasi recusandae expedita vitae cumque iure accusamus tempore laudantium
-        cupiditate quaerat praesentium voluptatibus dicta nihil. Vitae explicabo quae sapiente quaerat, laudantium cum, fugit
-        consectetur sint, quam quas possimus iure? Culpa eaque totam fuga, voluptatum blanditiis voluptatibus, beatae aliquid
-        porro itaque natus dignissimos minima adipisci.
+        Aplicatia comunica prin intermediul unei baze de date cu tema A1: Aplicatia de gestionare a comenzilor de produse, de unde
+        poate prelua comenzi ce pot fi ulterior acceptate sau respinse prin apasarea unui buton.
       </p>
+      <br />
+      <p> Comenzile vor fi apoi planificate automat in ordinea in care au fost acceptate de catre utilizator.</p>
     </article>
   );
 }
