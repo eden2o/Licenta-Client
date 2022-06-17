@@ -73,6 +73,7 @@ td.green {
   height: 43px;
   border-bottom: solid 3px #2568b4;
 }
+
 .modalButtons {
   display: flex;
   align-items: center;
@@ -133,6 +134,9 @@ td.green {
 }
 .btn.act {
   background-color: #2568b4;
+}
+.btn.inactive {
+  color: #000;
 }
 
 @media (max-width: 1300px) {

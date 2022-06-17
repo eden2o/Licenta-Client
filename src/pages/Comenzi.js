@@ -334,11 +334,14 @@ export default function Comenzi() {
     <>
       <h1>Comenzi</h1>
       <div className={styles.buttons}>
-        <button className={`${styles.btn} ${completate ? styles.act : ''} ${styles.actuale} `} onClick={() => setCompletate(1)}>
+        <button
+          className={`${styles.btn} ${completate ? styles.act : styles.inactive} ${styles.actuale} `}
+          onClick={() => setCompletate(1)}
+        >
           Actuale
         </button>
         <button
-          className={`${styles.btn} ${completate === 0 ? styles.act : ''} ${styles.completate}`}
+          className={`${styles.btn} ${completate === 0 ? styles.act : styles.inactive} ${styles.completate}`}
           onClick={() => setCompletate(0)}
         >
           Completate
@@ -420,7 +423,7 @@ export default function Comenzi() {
                           </Modal>
                         </>
                       ) : comanda.status !== 'In asteptare' ? (
-                        <Link to={`/comenzi/${comanda.id}`} className={styles.program}>
+                        <Link to={`/comenzi/${comanda.id}`} className={styles.program} aria-label='program comanda'>
                           <AiFillSchedule />
                         </Link>
                       ) : null}
