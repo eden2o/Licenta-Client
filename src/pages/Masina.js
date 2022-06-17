@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import Loading from '../components/Loading';
 import Pagination from '../components/Pagination';
 import styles from '../styles/Masina.module.css';
+
 var utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
@@ -59,17 +60,18 @@ export default function Masina() {
           const currentItems = masina.program_masinas.slice(indexFirst, indexLast);
           return (
             <div key={key} className={styles.wrapperTable}>
+              <h2>{masini[0].denumire}</h2>
               <div className={styles.hero}>
                 <div className={styles.picture}>
-                  <h2>{masini[0].denumire}</h2>
                   <img className={styles.image} src={`../images/masina-${id}.jpg`} alt='poza'></img>
                 </div>
                 <div className={styles.details}>
                   <h3>Timp de pregatire: {masina.timp_pregatire} min </h3>
+                  <br />
                   <h3>Procedee Disponibile:</h3>
                   <ul>
                     {masina.masini_procedees.map((procedeu, key) => {
-                      return <li key={key}>{procedeu.procedeu_prelucrare.denumire}</li>;
+                      return <li key={key}>- {procedeu.procedeu_prelucrare.denumire}</li>;
                     })}
                   </ul>
                 </div>
@@ -103,10 +105,7 @@ export default function Masina() {
                           </td>
                           <td data-label='Componenta'>{program.componentum.denumire} </td>
                           <td data-label='Procedeu'>{program.procedeu_prelucrare.denumire}</td>
-                          <td data-label='Data Inceput'>
-                            {console.log(dayjs(program.inceput_operatie))}
-                            {dayjs.utc(program.inceput_operatie).format('YYYY-MM-DD, HH:mm:ss')}
-                          </td>
+                          <td data-label='Data Inceput'>{dayjs.utc(program.inceput_operatie).format('YYYY-MM-DD, HH:mm:ss')}</td>
                           <td data-label='Data Incheiere'>
                             {dayjs.utc(program.incheiere_operatie).format('YYYY-MM-DD, HH:mm:ss')}
                           </td>

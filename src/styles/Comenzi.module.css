@@ -5,16 +5,18 @@
   width: 100%;
   margin-bottom: 2rem;
 }
-
 .table {
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0 10px;
-  text-align: start;
+  text-align: center;
   width: 100%;
 }
 .wide {
   width: 200px;
+}
+.small {
+  width: 100px;
 }
 .table td,
 th {
@@ -22,9 +24,8 @@ th {
   padding: 0.5rem;
   border: 1px solid #d1d1d1;
 }
-
 td.orange {
-  background-color: #dcc966;
+  background-color: #e2b154;
 }
 td.gray {
   background-color: #a7a7a7;
@@ -35,9 +36,24 @@ td.blue {
 td.green {
   background-color: #6aa51d;
 }
-td.tableButtons {
+.tableButtons {
   text-align: center;
 }
+.accept,
+.delete {
+  padding-top: 5px;
+}
+.program {
+  text-decoration: none;
+  font-size: 2rem;
+  color: #2568b4;
+  padding: 0;
+  line-height: 1rem;
+}
+.program svg {
+  margin-top: 5px;
+}
+
 .modalTitle {
   font-size: 1.1rem;
   text-align: center;
@@ -67,6 +83,9 @@ td.tableButtons {
 .btn {
   padding: 0 0.5rem;
   font-size: 1.5rem;
+}
+.btn svg {
+  margin-top: 3px;
 }
 .btn.delete {
   color: #d3453c;

@@ -27,7 +27,9 @@ export default function Componente() {
   const decrement = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
+
   const currentItems = listaComponente.slice(indexFirst, indexLast);
+
   useEffect(() => {
     document.title = 'Proiect de Diploma | Componente';
     const controller = new AbortController();
@@ -94,18 +96,6 @@ export default function Componente() {
             );
           })}
       </div>
-      {/* <Modal
-        open={open}
-        close={() => {
-          setOpen(false);
-        }}
-      >
-        <form action=''>
-          <input type='text' />
-          <input type='text' />
-        </form>
-        <h1>Test</h1>
-      </Modal> */}
     </>
   );
 }

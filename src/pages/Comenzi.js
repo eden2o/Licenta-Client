@@ -1,16 +1,18 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import Loading from '../components/Loading';
 import Modal from '../components/Modal';
-import { AiFillCheckCircle } from 'react-icons/ai';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { AiFillCheckCircle, AiFillSchedule } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import styles from '../styles/Comenzi.module.css';
 
 export default function Comenzi() {
   const [listaComenzi, setListaComenzi] = useState([]);
   const [dateComanda, setDateComanda] = useState([]);
+  const [programMasini, setProgramMasini] = useState([]);
   const [firstDates, setFirstDates] = useState([]);
   const [lastDates, setLastDates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +28,8 @@ export default function Comenzi() {
     loadLista();
     getDates();
     getUltimaData();
-  }, [updated, listaComenzi]);
+    getProgram();
+  }, [updated]);
 
   const getUltimaData = () => {
     axios
@@ -39,6 +42,16 @@ export default function Comenzi() {
       });
   };
 
+  const getProgram = () => {
+    axios
+      .get('https://licenta-tudor-alin-api.herokuapp.com/comenzi/date-masini')
+      .then((response) => {
+        setProgramMasini(response.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   const getDates = () => {
     axios
       .get('https://licenta-tudor-alin-api.herokuapp.com/comenzi/firstdates')
@@ -141,7 +154,7 @@ export default function Comenzi() {
   const sendPostRequest = (rand_tabel) => {
     axios
       .post('https://licenta-tudor-alin-api.herokuapp.com/comenzi', rand_tabel)
-      .then((response) => {
+      .then(() => {
         loadLista();
       })
       .catch((err) => {
@@ -196,45 +209,46 @@ export default function Comenzi() {
   };
 
   const calculProgram = (value) => {
-    var lista = dateComanda;
-    var com = value;
+    var com = value; //id comanda
     updateStatus(com, 'Planificata');
-    console.log(`id comanda este ${com}`);
-    for (let k = 0; k < lista.length; k++) {
-      if (lista[k].id === com) {
-        for (let i = 0; i < lista[k].produ.produses.length; i++) {
+    var program = programMasini;
+    for (let k = 0; k < dateComanda.length; k++) {
+      if (dateComanda[k].id === com) {
+        for (let i = 0; i < dateComanda[k].produ.produses.length; i++) {
           var nou;
-          for (let j = 0; j < lista[k].produ.produses[i].componentum.componentes.length; j++) {
-            const componente = lista[k].produ.produses[i]; // array cu produse
-            const procedee = lista[k].produ.produses[i].componentum.componentes[j]; // array cu componente
-            var durata_lot = lista[k].cantitate * componente.buc_componenta * procedee.durata; // un lot reprezinta numarul de componente necesare comenzii
-            const timp_pregatire = procedee.procedeu_prelucrare.masini_procedees[0].masina_unealtum.timp_pregatire; // timp pregatire pentru masina-unealta
-            var id_masina;
+          for (let j = 0; j < dateComanda[k].produ.produses[i].componentum.componentes.length; j++) {
+            const componente = dateComanda[k].produ.produses[i]; // array cu componente
+            const procedee = dateComanda[k].produ.produses[i].componentum.componentes[j]; // array cu procedee
+            var durata_lot = dateComanda[k].cantitate * componente.buc_componenta * procedee.durata; // un lot reprezinta numarul de componente necesare comenzii
+
+            var timp_pregatire;
             var rand_tabel = {};
-            console.log(`${durata_lot} minute`);
-            var ultima_operatie = dayjs(); //Daca nu exista activitati programate, se incepe cat mai devreme posibil
+            var id_masina;
+            var breakCheck = false;
             var min = dayjs('2099-01-25');
+            var ultima_operatie = dayjs(); //Daca nu exista activitati programate, se incepe cat mai devreme posibil
 
             for (let y = 0; y < procedee.procedeu_prelucrare.masini_procedees.length; y++) {
-              if (procedee.procedeu_prelucrare.masini_procedees[y].masina_unealtum.program_masinas.length === 0) {
-                min = dayjs('2099-01-25');
-                id_masina = procedee.procedeu_prelucrare.masini_procedees[y].id_masina;
-                break;
-              } else if (
-                dayjs(
-                  procedee.procedeu_prelucrare.masini_procedees[y].masina_unealtum.program_masinas[0].incheiere_operatie
-                ).isBefore(min)
-              ) {
-                min = dayjs(
-                  procedee.procedeu_prelucrare.masini_procedees[y].masina_unealtum.program_masinas[0].incheiere_operatie
-                );
-                id_masina = procedee.procedeu_prelucrare.masini_procedees[y].id_masina;
+              for (let l = 0; l < program.length; l++) {
+                if (program[l].id === procedee.procedeu_prelucrare.masini_procedees[y].id_masina) {
+                  if (program[l].program_masinas.length === 0) {
+                    id_masina = program[l].id;
+                    timp_pregatire = program[l].timp_pregatire;
+                    min = dayjs('2099-01-25');
+                    breakCheck = true;
+                    break;
+                  } else if (dayjs(program[l].program_masinas[0].incheiere_operatie).isBefore(min)) {
+                    min = dayjs(program[l].program_masinas[0].incheiere_operatie);
+                    id_masina = program[l].id;
+                    timp_pregatire = program[l].timp_pregatire;
+                  }
+                }
               }
+              if (breakCheck) break;
             }
 
+            if (j !== 0) if (nou && nou.isAfter(ultima_operatie)) ultima_operatie = nou;
             if (min.isBefore(dayjs('2089-01-25')) && min.isAfter(ultima_operatie)) ultima_operatie = min;
-
-            if (nou && nou.isAfter(ultima_operatie)) ultima_operatie = nou;
 
             const ora_max = ultima_operatie.set('h', 16).set('date', ultima_operatie.date()).set('minute', 30).set('second', 0);
             var data_inceput = dayjs().add(timp_pregatire, 'minutes').set('second', 0);
@@ -259,8 +273,14 @@ export default function Comenzi() {
                 inceput_operatie: data_inceput.format('YYYY-MM-DD, HH:mm:ss'),
                 incheiere_operatie: data_sfarsit.format('YYYY-MM-DD, HH:mm:ss'),
               };
-              nou = dayjs(data_sfarsit.format('YYYY-MM-DD, HH:mm:ss'));
               sendPostRequest(rand_tabel);
+              nou = dayjs(data_sfarsit.format('YYYY-MM-DD, HH:mm:ss'));
+              for (let m = 0; m < program.length; m++) {
+                if (program[m].id === id_masina)
+                  if (program[m].program_masinas.length === 0)
+                    program[m].program_masinas[0] = { incheiere_operatie: data_sfarsit.toISOString() };
+                  else program[m].program_masinas[0].incheiere_operatie = data_sfarsit.toISOString();
+              }
             } else {
               //switch
               durata_lot -= data_sfarsit.diff(data_inceput, 'minute');
@@ -293,14 +313,18 @@ export default function Comenzi() {
                 inceput_operatie: data_inceput.format('YYYY-MM-DD, HH:mm:ss'),
                 incheiere_operatie: data_sfarsit.format('YYYY-MM-DD, HH:mm:ss'),
               };
-              nou = dayjs(data_sfarsit.format('YYYY-MM-DD, HH:mm:ss'));
               sendPostRequest(rand_tabel);
-            } //end switch
+              nou = dayjs(data_sfarsit.format('YYYY-MM-DD, HH:mm:ss'));
+              for (let m = 0; m < program.length; m++) {
+                if (program[m].id === id_masina)
+                  if (program[m].program_masinas.length === 0)
+                    program[m].program_masinas[0] = { incheiere_operatie: data_sfarsit.toISOString() };
+                  else program[m].program_masinas[0].incheiere_operatie = data_sfarsit.toISOString();
+              }
+            }
           }
         }
         updateDataEstimata(com, data_sfarsit.format('YYYY-MM-DD'));
-
-        console.log(`Aici ${data_sfarsit.format('YYYY-MM-DD')}`);
       }
     }
   };
@@ -327,14 +351,14 @@ export default function Comenzi() {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>ID Comanda</th>
-              <th>Client</th>
+              <th className={styles.small}>ID</th>
+              <th className={styles.wide}>Client</th>
               <th className={styles.wide}>Produs</th>
-              <th>Cantitate</th>
+              <th className={styles.small}>Cantitate</th>
               <th>Data Solicitata</th>
-              <th>{completate ? 'Data Estimata' : 'Data Livrare'}</th>
+              <th>{completate ? 'Data Estimata' : 'Data Fabricare'}</th>
               <th>Status Comanda</th>
-              <th>#</th>
+              <th className={styles.small}>#</th>
             </tr>
           </thead>
           <tbody>
@@ -342,14 +366,10 @@ export default function Comenzi() {
               if (completate === 1 && comanda.status !== 'Completata')
                 return (
                   <tr key={key}>
-                    <td data-label='ID Comanda' className='id'>
-                      {comanda.id}
-                    </td>
+                    <td data-label='ID Comanda'>{comanda.id}</td>
                     <td data-label='Client'>{comanda.client.nume}</td>
                     <td data-label='Produs'>{comanda.produ.denumire}</td>
-                    <td data-label='Cantitate' className='id'>
-                      {comanda.cantitate} buc.
-                    </td>
+                    <td data-label='Cantitate'>{comanda.cantitate} buc.</td>
                     <td data-label='Data solicitata'>{comanda.data_solicitata}</td>
                     <td data-label='Data estimata'>{comanda.data_estimata ? comanda.data_estimata : '-'}</td>
                     <td
@@ -399,6 +419,10 @@ export default function Comenzi() {
                             </div>
                           </Modal>
                         </>
+                      ) : comanda.status !== 'In asteptare' ? (
+                        <Link to={`/comenzi/${comanda.id}`} className={styles.program}>
+                          <AiFillSchedule />
+                        </Link>
                       ) : null}
                     </td>
                   </tr>
