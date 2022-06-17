@@ -180,27 +180,16 @@ export default function Comenzi() {
   const calculDataEstimata = () => {
     listaComenzi.forEach((comanda) => {
       if (comanda.status === 'In asteptare') {
-        var x = Math.ceil(
-          (comanda.cantitate *
-            (comanda.produ.durata_asamblare + comanda.produ.durata_fabricatie + 30 * comanda.produ.produses.length)) /
-            480
-        );
-        var min = dayjs();
-        if (ultimaData[0].program_masinas[0]) min = dayjs(ultimaData[0].program_masinas[0].incheiere_operatie);
-        console.log(`Minim: ${min.format('YYYY-MM-DD')}`);
-        for (let i = 0; i < ultimaData.length; i++) {
-          if (ultimaData[i].program_masinas.length === 0) {
-            min = dayjs();
-            break;
-          }
-          if (dayjs(ultimaData[i].program_masinas[0].incheiere_operatie).isBefore(min))
-            min = dayjs(ultimaData[i].program_masinas[0].incheiere_operatie);
-        }
+        var zile = Math.ceil((comanda.cantitate * (comanda.produ.durata_asamblare + comanda.produ.durata_fabricatie)) / 480 / 2);
+        console.log(zile);
+        var min;
 
-        var data_estimata = dayjs(min).add(x, 'days');
+        if (ultimaData.length === 0) min = dayjs();
+        else min = dayjs(ultimaData[0].incheiere_operatie);
+        var data_estimata = dayjs(min).add(zile, 'days');
+        if (data_estimata.day() === 6) data_estimata = data_estimata.add(2, 'days');
+        if (data_estimata.day() === 0) data_estimata = data_estimata.add(1, 'days');
 
-        console.log(ultimaData);
-        console.log(`Data estimata pentru comanda ${comanda.id}: ${data_estimata.format('YYYY-MM-DD')}`);
         if (comanda.data_estimata !== data_estimata.format('YYYY-MM-DD')) {
           updateDataEstimata(comanda.id, data_estimata.format('YYYY-MM-DD'));
         }
