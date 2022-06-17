@@ -28,6 +28,9 @@
   max-width: 1100px;
   width: 100%;
 }
+.wrapperTable h2 {
+  margin-bottom: 1rem;
+}
 .wrapperComanda {
   margin: 0 auto;
   max-width: 1300px;

@@ -23,7 +23,7 @@ export default function Comenzi() {
 
   useEffect(() => {
     //initial get request for all data
-    document.title = 'Proiect de Diploma | Comenzi';
+    document.title = 'Proiect de Diplomă | Comenzi';
     loadComenzi();
     loadLista();
     getDates();
@@ -358,8 +358,8 @@ export default function Comenzi() {
               <th className={styles.wide}>Client</th>
               <th className={styles.wide}>Produs</th>
               <th className={styles.small}>Cantitate</th>
-              <th>Data Solicitata</th>
-              <th>{completate ? 'Data Estimata' : 'Data Fabricare'}</th>
+              <th>Data Solicitată</th>
+              <th>{completate ? 'Data Estimată' : 'Data Fabricare'}</th>
               <th>Status Comanda</th>
               <th className={styles.small}>#</th>
             </tr>
@@ -404,8 +404,8 @@ export default function Comenzi() {
                               setOpen(false);
                             }}
                           >
-                            <h4 className={styles.modalTitle}>Stergere Comanda?</h4>
-                            <p className={styles.modalText}>Sterge comanda cu ID {comanda.id}?</p>
+                            <h4 className={styles.modalTitle}>Ștergere Comandă?</h4>
+                            <p className={styles.modalText}>Șterge comanda cu ID {comanda.id}?</p>
                             <div className={styles.modalButtons}>
                               <button
                                 className={`${styles.btn} ${styles.confirm}`}

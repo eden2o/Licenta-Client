@@ -5,8 +5,8 @@ export default function NotFound() {
   return (
     <div className={styles.notFound}>
       <h1 className={styles.error}>404</h1>
-      <p>Pagina nu a fost gasita...</p>
-      <Link to='/'>Inapoi la pagina principala</Link>
+      <p>Pagina nu a fost găsită...</p>
+      <Link to='/'>Înapoi la pagina principală</Link>
     </div>
   );
 }

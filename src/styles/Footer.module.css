@@ -34,9 +34,21 @@ footer {
   height: 100%;
   margin-top: 0;
 }
+.contact .info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 .copyright {
   font-size: 0.8rem;
   text-align: center;
+}
+.copyright a:hover,
+.info:hover {
+  color: #2568b4;
 }
 .navigare li a {
   color: #fff;

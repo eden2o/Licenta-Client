@@ -31,7 +31,7 @@ export default function Componente() {
   const currentItems = listaComponente.slice(indexFirst, indexLast);
 
   useEffect(() => {
-    document.title = 'Proiect de Diploma | Componente';
+    document.title = 'Proiect de Diplomă | Componente';
     const controller = new AbortController();
     axios
       .get('https://licenta-tudor-alin-api.herokuapp.com/componente', { signal: controller.signal })

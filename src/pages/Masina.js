@@ -66,9 +66,9 @@ export default function Masina() {
                   <img className={styles.image} src={`../images/masina-${id}.jpg`} alt='poza'></img>
                 </div>
                 <div className={styles.details}>
-                  <h3>Timp de pregatire: {masina.timp_pregatire} min </h3>
+                  <h3>Timp de pregătire: {masina.timp_pregatire} minute </h3>
                   <br />
-                  <h3>Procedee Disponibile:</h3>
+                  <h3>Procedee disponibile:</h3>
                   <ul>
                     {masina.masini_procedees.map((procedeu, key) => {
                       return <li key={key}>- {procedeu.procedeu_prelucrare.denumire}</li>;
@@ -76,7 +76,7 @@ export default function Masina() {
                   </ul>
                 </div>
               </div>
-              <h2>Program Masina</h2>
+              <h2>Program Mașină</h2>
               <Pagination
                 itemsPage={itemsPage}
                 totalItems={masina.program_masinas.length}
@@ -91,8 +91,8 @@ export default function Masina() {
                     <th>Comanda</th>
                     <th>Componenta</th>
                     <th>Procedeu</th>
-                    <th>Inceput Operatie</th>
-                    <th>Incheiere Operatie</th>
+                    <th>Început Operație</th>
+                    <th>Încheiere Operație</th>
                   </tr>
                 </thead>
                 <tbody>

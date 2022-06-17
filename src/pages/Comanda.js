@@ -70,11 +70,11 @@ export default function Comanda() {
           <thead>
             <tr>
               <th className={styles.small}>ID</th>
-              <th>Masina</th>
-              <th>Componenta</th>
+              <th>Mașină</th>
+              <th>Componentă</th>
               <th>Procedeu</th>
-              <th>Inceput Operatie</th>
-              <th>Incheiere Operatie</th>
+              <th>Început Operație</th>
+              <th>Încheiere Operație</th>
             </tr>
           </thead>
           <tbody>

@@ -10,7 +10,7 @@ export default function Masini() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    document.title = 'Proiect de Diploma | Masini';
+    document.title = 'Proiect de Diplomă | Mașini';
     const controller = new AbortController();
     axios
       .get('https://licenta-tudor-alin-api.herokuapp.com/masini')
@@ -31,7 +31,7 @@ export default function Masini() {
 
   return (
     <>
-      <h1>Masini disponibile</h1>
+      <h1>Mașini disponibile</h1>
       <div className={styles.listaMasini}>
         {isLoading && <Loading />}
         {listaMasini &&

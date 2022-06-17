@@ -27,7 +27,7 @@ export default function Produse() {
   };
 
   useEffect(() => {
-    document.title = 'Proiect de Diploma | Produse';
+    document.title = 'Proiect de Diplomă | Produse';
     const controller = new AbortController();
     axios
       .get('https://licenta-tudor-alin-api.herokuapp.com/produse', { signal: controller.signal })
@@ -90,8 +90,8 @@ export default function Produse() {
                   <h3>Durata de asamblare: {produs.durata_asamblare / 60} ore</h3>
                   <h3>
                     {durata % 60 === 0
-                      ? `Durata de fabricatie: ${Math.floor(durata / 60)}`
-                      : `Durata de fabricatie: ${Math.floor(durata / 60)} ore ${durata % 60} minute`}
+                      ? `Durata de fabricație: ${Math.floor(durata / 60)}`
+                      : `Durata de fabricație: ${Math.floor(durata / 60)} ore ${durata % 60} minute`}
                   </h3>
                 </div>
                 <Pagination
@@ -107,8 +107,8 @@ export default function Produse() {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th className={styles.wide}>Nume Componenta</th>
-                        <th>Bucati</th>
+                        <th className={styles.wide}>Nume Componentă</th>
+                        <th>Bucăți</th>
                       </tr>
                     </thead>
                     <tbody>

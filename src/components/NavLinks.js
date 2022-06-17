@@ -13,7 +13,7 @@ export default function NavLinks(props) {
         <NavLink to='/'>
           <div className={styles.navItem}>
             <AiFillHome className={styles.navLogo} />
-            Acasa
+            Acasă
           </div>
         </NavLink>
       </li>
@@ -29,7 +29,7 @@ export default function NavLinks(props) {
         <NavLink to='/masini'>
           <div className={styles.navItem}>
             <GiFactory className={styles.navLogo} />
-            Masini-Unelte
+            Mașini-Unelte
           </div>
         </NavLink>
       </li>
