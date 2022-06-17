@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function Navigation() {
   return (
     <nav className={styles.navigation}>
-      <Link to='/'>
+      <Link to='/' aria-label='pagina acasă'>
         <BiCube className={styles.logo} />
       </Link>
       <NavLinks />
