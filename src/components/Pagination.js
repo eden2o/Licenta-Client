@@ -10,7 +10,7 @@ export default function Pagination({ itemsPage, totalItems, paginate, increment,
     pageNumbers.push(i);
   }
   return (
-    <nav className={styles.pagination}>
+    <nav className={styles.pagination} aria-label='Pagination'>
       <ul>
         <li>
           <BiChevronsLeft onClick={() => decrement()} className={styles.chevron} />
