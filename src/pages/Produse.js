@@ -8,17 +8,14 @@ import Pagination from '../components/Pagination';
 export default function Produse() {
   const [listaProduse, setListaProduse] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage] = useState(1);
-
   const indexLast = currentPage * itemsPage;
   const indexFirst = indexLast - itemsPage;
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   const increment = (pages) => {
     if (currentPage < pages.length) setCurrentPage(currentPage + 1);
   };
@@ -91,7 +88,8 @@ export default function Produse() {
                   <h3>
                     {durata % 60 === 0
                       ? `Durata de fabricație: ${Math.floor(durata / 60)}`
-                      : `Durata de fabricație: ${Math.floor(durata / 60)} ore ${durata % 60} minute`}
+                      : `Durata de fabricație: ${Math.floor(durata / 60)} 
+                      ore ${durata % 60} minute`}
                   </h3>
                 </div>
                 <Pagination

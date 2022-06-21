@@ -7,7 +7,6 @@ nav {
   gap: 6rem;
   height: 100%;
 }
-
 nav a {
   color: inherit;
   text-decoration: none;
@@ -15,24 +14,6 @@ nav a {
   display: flex;
   padding: 0.25rem;
 }
-
-nav li:hover {
-  background-color: #777;
-}
-
-.activeLink {
-  background-color: #555;
-}
-.chevron {
-  font-size: 1.2rem;
-
-  text-decoration: none;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
 nav ul {
   display: flex;
   list-style: none;
@@ -40,12 +21,41 @@ nav ul {
   margin: 0;
   gap: 3rem;
 }
-
-.mobileNavigation {
-  display: none;
-}
 .navbar {
   height: 4rem;
+}
+nav li:hover {
+  background-color: #777;
+}
+.navigation {
+  justify-content: left;
+  padding-left: 3rem;
+}
+.navLogo {
+  font-size: 1.8rem;
+  margin: 0 auto;
+}
+.navigation ul li a .navItem.hidden {
+  display: none;
+}
+.navItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.activeLink {
+  background-color: #555;
+}
+.chevron {
+  font-size: 1.2rem;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.mobileNavigation {
+  display: none;
 }
 
 .logo {
@@ -54,25 +64,6 @@ nav ul {
 }
 .logo:hover {
   color: #2568b4;
-}
-
-.navigation {
-  justify-content: left;
-  padding-left: 3rem;
-}
-
-.navLogo {
-  font-size: 1.8rem;
-  margin: 0 auto;
-}
-.navigation ul li a .navItem.hidden {
-  display: none;
-}
-
-.navItem {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 @media (max-width: 870px) {

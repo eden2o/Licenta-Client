@@ -40,7 +40,7 @@ export default function Masini() {
               <Link key={key} to={`/masini/${value.id}`} className={styles.link}>
                 <div className={styles.masina}>
                   <h2 className={styles.name}>{value.denumire}</h2>
-                  <img className={styles.image} src={`../images/masina-${value.id}.jpg`} alt='poza'></img>
+                  <img className={styles.image} src={`../images/masina-${value.id}.jpg`} alt='masina-unealta'></img>
                 </div>
               </Link>
             );

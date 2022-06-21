@@ -115,25 +115,10 @@ export default function Comenzi() {
   };
 
   const deleteProgram = (id) => {
-    axios.delete(`https://licenta-tudor-alin-api.herokuapp.com/comenzi/delete-program/${id}`).then(() => {});
+    axios.delete(`https://licenta-tudor-alin-api.herokuapp.com/comenzi/delete-program/${id}`).then(() => {
+      console.log('deleted');
+    });
   };
-
-  const checkStatus = () => {
-    var today = dayjs();
-    for (let i = 0; i < firstDates.length; i++) {
-      var first_date = dayjs(firstDates[i].program_masinas[0].inceput_operatie);
-      if (today.isAfter(first_date)) updateStatus(firstDates[i].id, 'In desfasurare');
-    }
-    for (let j = 0; j < lastDates.length; j++) {
-      var last_date = dayjs(lastDates[j].program_masinas[0].incheiere_operatie);
-      if (today.isAfter(last_date)) {
-        updateStatus(lastDates[j].id, 'Completata');
-        deleteProgram(lastDates[j].id);
-      }
-    }
-  };
-
-  setInterval(checkStatus, 1800000); //Verificare status / 30min
 
   const updateStatus = (id_comanda, status) => {
     let id = id_comanda;
@@ -177,18 +162,42 @@ export default function Comenzi() {
       });
   };
 
+  const checkStatus = () => {
+    var today = dayjs();
+    for (let i = 0; i < firstDates.length; i++) {
+      var first_date = dayjs(firstDates[i].program_masinas[0].inceput_operatie);
+      if (today.isAfter(first_date)) updateStatus(firstDates[i].id, 'In desfasurare');
+    }
+    for (let j = 0; j < lastDates.length; j++) {
+      var last_date = dayjs(lastDates[j].data_estimata);
+      if (today.isAfter(last_date)) {
+        updateStatus(lastDates[j].id, 'Completata');
+        deleteProgram(lastDates[j].id);
+      }
+    }
+  };
+
+  setInterval(checkStatus, 1800000); //Verificare status / 30min
+
   const calculDataEstimata = () => {
     listaComenzi.forEach((comanda) => {
       if (comanda.status === 'In asteptare') {
-        var zile = Math.ceil((comanda.cantitate * (comanda.produ.durata_asamblare + comanda.produ.durata_fabricatie)) / 480 / 2);
-        console.log(zile);
+        var zile = Math.ceil(
+          (comanda.cantitate * comanda.produ.durata_asamblare) / 480 +
+            (comanda.cantitate * (comanda.produ.durata_fabricatie / 3)) / 480
+        );
         var min;
-
         if (ultimaData.length === 0) min = dayjs();
         else min = dayjs(ultimaData[0].incheiere_operatie);
+        var check = min;
+        for (let i = 1; i <= zile; i++) {
+          if (check.day() === 5) {
+            min = min.add(3, 'days');
+            check = check.add(3, 'days');
+          }
+          check = check.add(1, 'days');
+        }
         var data_estimata = dayjs(min).add(zile, 'days');
-        if (data_estimata.day() === 6) data_estimata = data_estimata.add(2, 'days');
-        if (data_estimata.day() === 0) data_estimata = data_estimata.add(1, 'days');
 
         if (comanda.data_estimata !== data_estimata.format('YYYY-MM-DD')) {
           updateDataEstimata(comanda.id, data_estimata.format('YYYY-MM-DD'));
@@ -208,14 +217,14 @@ export default function Comenzi() {
           for (let j = 0; j < dateComanda[k].produ.produses[i].componentum.componentes.length; j++) {
             const componente = dateComanda[k].produ.produses[i]; // array cu componente
             const procedee = dateComanda[k].produ.produses[i].componentum.componentes[j]; // array cu procedee
-            var durata_lot = dateComanda[k].cantitate * componente.buc_componenta * procedee.durata; // un lot reprezinta numarul de componente necesare comenzii
-
+            var durata_lot = dateComanda[k].cantitate * componente.buc_componenta * procedee.durata;
+            // un lot reprezinta numarul de componente necesare comenzii
             var timp_pregatire;
             var rand_tabel = {};
             var id_masina;
             var breakCheck = false;
             var min = dayjs('2099-01-25');
-            var ultima_operatie = dayjs(); //Daca nu exista activitati programate, se incepe cat mai devreme posibil
+            var ultima_operatie = dayjs('2022-06-19, 18:00:00 '); //Daca nu exista activitati programate, se incepe cat mai devreme posibil
 
             for (let y = 0; y < procedee.procedeu_prelucrare.masini_procedees.length; y++) {
               for (let l = 0; l < program.length; l++) {
@@ -239,7 +248,7 @@ export default function Comenzi() {
             if (j !== 0) if (nou && nou.isAfter(ultima_operatie)) ultima_operatie = nou;
             if (min.isBefore(dayjs('2089-01-25')) && min.isAfter(ultima_operatie)) ultima_operatie = min;
 
-            const ora_max = ultima_operatie.set('h', 16).set('date', ultima_operatie.date()).set('minute', 30).set('second', 0);
+            const ora_max = ultima_operatie.set('h', 17).set('date', ultima_operatie.date()).set('minute', 0).set('second', 0);
             var data_inceput = dayjs().add(timp_pregatire, 'minutes').set('second', 0);
 
             if (ultima_operatie.isAfter(dayjs())) data_inceput = dayjs(ultima_operatie).add(timp_pregatire, 'minutes');
@@ -271,7 +280,6 @@ export default function Comenzi() {
                   else program[m].program_masinas[0].incheiere_operatie = data_sfarsit.toISOString();
               }
             } else {
-              //switch
               durata_lot -= data_sfarsit.diff(data_inceput, 'minute');
               var zile = Math.floor(durata_lot / (480 - timp_pregatire)); //durata lotului in zile de 8 ore
               var minute = durata_lot % (480 - timp_pregatire); //minutele ramase in ultima zi
@@ -313,7 +321,25 @@ export default function Comenzi() {
             }
           }
         }
-        updateDataEstimata(com, data_sfarsit.format('YYYY-MM-DD'));
+        var last = dayjs('1999-01-25');
+        for (let m = 0; m < program.length; m++) {
+          if (dayjs(program[m].program_masinas[0].incheiere_operatie).isAfter(last))
+            last = dayjs(program[m].program_masinas[0].incheiere_operatie);
+        }
+        var zile_asamblare;
+        var check2 = last;
+        var ore_asamblare = ((dateComanda[k].produ.durata_asamblare * dateComanda[k].cantitate) % 480) / 60;
+        console.log(nou.format('YYYY-MM-DD, HH:mm:ss'));
+        if (ore_asamblare && 17 - data_sfarsit.hour() > ore_asamblare)
+          zile_asamblare = Math.floor((dateComanda[k].produ.durata_asamblare * dateComanda[k].cantitate) / 480);
+        else zile_asamblare = Math.ceil((dateComanda[k].produ.durata_asamblare * dateComanda[k].cantitate) / 480);
+        for (let x = 1; x <= zile_asamblare; x++) {
+          if (check2.day() === 5) {
+            check2 = check2.add(2, 'days');
+          }
+          check2 = check2.add(1, 'days');
+        }
+        updateDataEstimata(com, check2.format('YYYY-MM-DD'));
       }
     }
   };
@@ -348,7 +374,7 @@ export default function Comenzi() {
               <th className={styles.wide}>Produs</th>
               <th className={styles.small}>Cantitate</th>
               <th>Data Solicitată</th>
-              <th>{completate ? 'Data Estimată' : 'Data Fabricare'}</th>
+              <th>{completate ? 'Data Estimată' : 'Data Finalizare'}</th>
               <th>Status Comanda</th>
               <th className={styles.small}>#</th>
             </tr>
@@ -371,9 +397,7 @@ export default function Comenzi() {
                           ? styles.gray
                           : comanda.status === 'Planificata'
                           ? styles.orange
-                          : comanda.status === 'In desfasurare'
-                          ? styles.blue
-                          : styles.green
+                          : styles.blue
                       }
                     >
                       {comanda.status}
@@ -431,19 +455,8 @@ export default function Comenzi() {
                       {comanda.cantitate} buc.
                     </td>
                     <td data-label='Data solicitata'>{comanda.data_solicitata}</td>
-                    <td data-label='Data estimata'>{comanda.data_estimata ? comanda.data_estimata : '-'}</td>
-                    <td
-                      data-label='Status'
-                      className={
-                        comanda.status === 'In asteptare'
-                          ? styles.gray
-                          : comanda.status === 'Planificata'
-                          ? styles.orange
-                          : comanda.status === 'In desfasurare'
-                          ? styles.blue
-                          : styles.green
-                      }
-                    >
+                    <td data-label='Data estimata'>{comanda.data_estimata}</td>
+                    <td data-label='Status' className={styles.green}>
                       {comanda.status}
                     </td>
                   </tr>

@@ -36,23 +36,6 @@ td.blue {
 td.green {
   background-color: #6aa51d;
 }
-.tableButtons {
-  text-align: center;
-}
-.accept,
-.delete {
-  padding-top: 5px;
-}
-.program {
-  text-decoration: none;
-  font-size: 2rem;
-  color: #2568b4;
-  padding: 0;
-  line-height: 1rem;
-}
-.program svg {
-  margin-top: 5px;
-}
 
 .modalTitle {
   font-size: 1.1rem;
@@ -73,13 +56,12 @@ td.green {
   height: 43px;
   border-bottom: solid 3px #2568b4;
 }
-
-.modalButtons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 3rem;
+.tableButtons {
+  text-align: center;
+}
+.accept,
+.delete {
+  padding-top: 5px;
 }
 .btn {
   padding: 0 0.5rem;
@@ -88,11 +70,29 @@ td.green {
 .btn svg {
   margin-top: 3px;
 }
+
 .btn.delete {
   color: #d3453c;
 }
 .btn.accept {
   color: #6aa51d;
+}
+.program {
+  text-decoration: none;
+  font-size: 2rem;
+  color: #2568b4;
+  padding: 0;
+  line-height: 1rem;
+}
+.program svg {
+  margin-top: 5px;
+}
+.modalButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
 }
 .btn.confirm {
   width: 8rem;
@@ -139,12 +139,6 @@ td.green {
   color: #000;
 }
 
-@media (max-width: 1300px) {
-  .wide {
-    width: 120px;
-  }
-}
-
 @media (max-width: 1200px) {
   .wrapperTable {
     width: 75%;
@@ -189,6 +183,11 @@ td.green {
     padding-left: 0.8rem;
   }
 }
+@media (max-width: 1300px) {
+  .wide {
+    width: 120px;
+  }
+}
 @media (max-width: 700px) {
   .wrapperTable {
     width: 100%;
@@ -221,7 +220,6 @@ td.green {
   .btn.completate {
     float: right;
   }
-
   .estimare {
     width: 100%;
     margin-top: 0.5rem;

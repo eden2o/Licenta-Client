@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import Loading from '../components/Loading';
 import Pagination from '../components/Pagination';
 import styles from '../styles/Masina.module.css';
-
 var utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
@@ -17,14 +16,12 @@ export default function Masina() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage] = useState(10);
   const today = dayjs();
-
   const indexLast = currentPage * itemsPage;
   const indexFirst = indexLast - itemsPage;
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   const increment = (pages) => {
     if (currentPage < pages.length) setCurrentPage(currentPage + 1);
   };

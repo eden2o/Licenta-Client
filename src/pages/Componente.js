@@ -1,22 +1,18 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 import Loading from '../components/Loading';
-import styles from '../styles/Componente.module.css';
 import Pagination from '../components/Pagination';
+import styles from '../styles/Componente.module.css';
 
 export default function Componente() {
   const [listaComponente, setListaComponente] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  //const [open, setOpen] = useState(false);
-  var durata;
-
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage] = useState(12);
-
   const indexLast = currentPage * itemsPage;
   const indexFirst = indexLast - itemsPage;
-
+  var durata;
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

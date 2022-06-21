@@ -20,7 +20,6 @@
   list-style: decimal;
   display: flex;
   justify-content: space-between;
-
   height: 2rem;
 }
 .timp {
@@ -54,7 +53,6 @@
     width: 60%;
   }
 }
-
 @media (max-width: 650px) {
   .componente {
     margin: 0 auto;

@@ -41,7 +41,6 @@ footer {
   margin-top: 10px;
   cursor: pointer;
 }
-
 .copyright {
   font-size: 0.8rem;
   text-align: center;
@@ -72,12 +71,6 @@ footer {
   .content {
     gap: 3rem;
     padding: 0 2rem;
-  }
-}
-
-@media (max-width: 1200px) {
-  .content {
-    gap: 2rem;
   }
   .navigare {
     width: 300px;

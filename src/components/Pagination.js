@@ -1,7 +1,6 @@
 import React from 'react';
 import { BiChevronsLeft, BiChevronsRight } from 'react-icons/bi';
 import styles from '../styles/Navigation.module.css';
-
 export default function Pagination({ itemsPage, totalItems, paginate, increment, decrement, currentPage }) {
   const pageNumbers = [];
   var x = 0;
