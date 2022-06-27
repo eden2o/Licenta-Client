@@ -94,21 +94,19 @@ export default function Masina() {
                 </thead>
                 <tbody>
                   {currentItems.map((program, key) => {
-                    if (dayjs(program.inceput_operatie).isAfter(today))
-                      return (
-                        <tr key={key}>
-                          <td className='id' data-label='ID Comanda'>
-                            Comanda {program.id_comanda}
-                          </td>
-                          <td data-label='Componenta'>{program.componentum.denumire} </td>
-                          <td data-label='Procedeu'>{program.procedeu_prelucrare.denumire}</td>
-                          <td data-label='Data Inceput'>{dayjs.utc(program.inceput_operatie).format('YYYY-MM-DD, HH:mm:ss')}</td>
-                          <td data-label='Data Incheiere'>
-                            {dayjs.utc(program.incheiere_operatie).format('YYYY-MM-DD, HH:mm:ss')}
-                          </td>
-                        </tr>
-                      );
-                    else return null;
+                    return (
+                      <tr key={key}>
+                        <td className='id' data-label='ID Comanda'>
+                          Comanda {program.id_comanda}
+                        </td>
+                        <td data-label='Componenta'>{program.componentum.denumire} </td>
+                        <td data-label='Procedeu'>{program.procedeu_prelucrare.denumire}</td>
+                        <td data-label='Data Inceput'>{dayjs.utc(program.inceput_operatie).format('YYYY-MM-DD, HH:mm:ss')}</td>
+                        <td data-label='Data Incheiere'>
+                          {dayjs.utc(program.incheiere_operatie).format('YYYY-MM-DD, HH:mm:ss')}
+                        </td>
+                      </tr>
+                    );
                   })}
                 </tbody>
               </table>
