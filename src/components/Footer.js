@@ -16,7 +16,7 @@ export default function Footer() {
           </p>
         </div>
         <div className={styles.navigare}>
-          <h2>Navigare Rapida</h2>
+          <h2>Navigare Rapidă</h2>
           <NavLinks aria-label='Footer Navigation' />
         </div>
         <div className={styles.contact}>
