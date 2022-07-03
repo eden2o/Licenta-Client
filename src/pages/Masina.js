@@ -15,7 +15,6 @@ export default function Masina() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPage] = useState(10);
-  const today = dayjs();
   const indexLast = currentPage * itemsPage;
   const indexFirst = indexLast - itemsPage;
 
