@@ -212,7 +212,7 @@ export default function Comenzi() {
             var id_masina;
             var breakCheck = false;
             var min = dayjs('2099-01-25');
-            var ultima_operatie = dayjs('2022-06-19, 18:00:00 '); //Daca nu exista activitati programate, se incepe cat mai devreme posibil
+            var ultima_operatie = dayjs(); //Daca nu exista activitati programate, se incepe cat mai devreme posibil
 
             for (let y = 0; y < procedee.procedeu_prelucrare.masini_procedees.length; y++) {
               for (let l = 0; l < program.length; l++) {
