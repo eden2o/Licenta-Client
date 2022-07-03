@@ -214,7 +214,7 @@ export default function Comenzi() {
             var min = dayjs('2099-01-25');
             var ultima_operatie = dayjs(); //Daca nu exista activitati programate, se incepe cat mai devreme posibil
             if (ultima_operatie.day === 6) ultima_operatie = ultima_operatie.add(2, 'days');
-            if (ultima_operatie.day === 0) ultima_operatie = ultima_operatie.add(1, 'days');
+            else if (ultima_operatie.day === 0) ultima_operatie = ultima_operatie.add(1, 'days');
             for (let y = 0; y < procedee.procedeu_prelucrare.masini_procedees.length; y++) {
               for (let l = 0; l < program.length; l++) {
                 if (program[l].id === procedee.procedeu_prelucrare.masini_procedees[y].id_masina) {
